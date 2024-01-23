@@ -21,8 +21,17 @@ rl.on('line', (input) => {
   writeStream.write(`${input}\n`);
 });
 
-process.on('SIGINT', () => {
+rl.on('SIGINT', () => {
   console.log('Goodbye!');
-  rl.close();
+  cleanup();
+});
+
+writeStream.on('close', () => {
   process.exit();
 });
+
+function cleanup() {
+  writeStream.end(() => {
+    rl.close();
+  });
+}
