@@ -11,6 +11,7 @@ const copyDir = async () => {
     for (let file of files) {
       const initialPath = path.join(initialDir, file);
       const destinationPath = path.join(destinationDir, file);
+
       await fs.copyFile(initialPath, destinationPath);
       console.log(`${file} copied.`);
     }
