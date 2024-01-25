@@ -16,9 +16,11 @@ const displayFileInfo = (folderPath) => {
           if (statErr) {
             console.error('Error getting file stats:', statErr.message);
           } else {
+            const fileName = path.basename(file.name, path.extname(file.name));
+            const fileExtension = path.extname(file.name).slice(1);
             const fileSize = fileStats.size;
             console.log(
-              `${file.name}-${path.extname(file.name).slice(1)}-${fileSize.toFixed(3)}kb`,
+              `${fileName} - ${fileExtension} - ${fileSize.toFixed(3)}kb`,
             );
           }
         });
